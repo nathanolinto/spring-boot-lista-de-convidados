@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  database:
+    image: postgres
+    container_name: database_postgres
+    restart: always
+    ports:
+     - 5432:5432
+    environment:
+      - POSTGRES_USER=festasUser
+      - POSTGRES_PASSWORD=festasPassword
+      - POSTGRES_DB=festasDb
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
