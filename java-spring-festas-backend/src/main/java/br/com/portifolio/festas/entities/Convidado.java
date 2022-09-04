@@ -21,6 +21,6 @@ public class Convidado {
     private UUID id;
 
     @Column(name = "nome", nullable = false)
-    private String name;
+    private String nome;
 
 }
