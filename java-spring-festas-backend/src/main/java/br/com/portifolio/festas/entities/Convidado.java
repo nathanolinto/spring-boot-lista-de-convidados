@@ -22,5 +22,4 @@ public class Convidado {
 
     @Column(name = "nome", nullable = false)
     private String nome;
-
 }

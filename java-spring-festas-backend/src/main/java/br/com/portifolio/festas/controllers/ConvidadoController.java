@@ -20,8 +20,8 @@ public class ConvidadoController {
     private ConvidadoService convidadoService;
 
     @PostMapping
-    public ConvidadoDTO create(@RequestBody ConvidadoDTO convidado){
-        return convidadoService.create(convidado);
+    public ResponseEntity<ConvidadoDTO> create(@RequestBody ConvidadoDTO convidado){
+        return new ResponseEntity<ConvidadoDTO>(convidadoService.create(convidado), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
