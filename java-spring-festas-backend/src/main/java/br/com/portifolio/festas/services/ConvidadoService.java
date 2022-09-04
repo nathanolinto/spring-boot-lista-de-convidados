@@ -1,5 +1,6 @@
 package br.com.portifolio.festas.services;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,6 +27,10 @@ public class ConvidadoService {
     }
 
     public ConvidadoDTO create(ConvidadoDTO convidado) {
+        List<Convidado> consulta = convidadoRepository.findByNome(convidado.getNome());
+        if (!consulta.isEmpty()){
+            return null;
+        }
         Convidado entity = new Convidado();
         entity.setNome(convidado.getNome());
         entity = convidadoRepository.save(entity);

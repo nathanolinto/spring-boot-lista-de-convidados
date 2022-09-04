@@ -1,6 +1,8 @@
 package br.com.portifolio.festas.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +25,7 @@ public class ConvidadoController {
     }
 
     @GetMapping("/{id}")
-    public String obterNomeConvidado(@PathVariable(name = "id") String id) {
-        return convidadoService.getNomeById(id);
+    public ResponseEntity<String> obterNomeConvidado(@PathVariable(name = "id") String id) {
+        return new ResponseEntity<String>(convidadoService.getNomeById(id), HttpStatus.OK);
     }
 }
