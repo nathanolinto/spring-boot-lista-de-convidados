@@ -1,5 +1,7 @@
 package br.com.portifolio.festas.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.portifolio.festas.dto.ConvidadoDTO;
+import br.com.portifolio.festas.entities.Convidado;
 import br.com.portifolio.festas.services.ConvidadoService;
 
 @RestController
-@RequestMapping("/convidado")
+@RequestMapping("/convidados")
 public class ConvidadoController {
     @Autowired
     private ConvidadoService convidadoService;
+
+
+    @GetMapping
+    public ResponseEntity<List<Convidado>> listConvidados() {
+        return new ResponseEntity<List<Convidado>>(convidadoService.list(), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<ConvidadoDTO> create(@RequestBody ConvidadoDTO convidado){
         return new ResponseEntity<ConvidadoDTO>(convidadoService.create(convidado), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<String> obterNomeConvidado(@PathVariable(name = "id") String id) {
-        return new ResponseEntity<String>(convidadoService.getNomeById(id), HttpStatus.OK);
-    }
 }

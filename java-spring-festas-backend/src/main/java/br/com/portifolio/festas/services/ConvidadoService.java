@@ -17,15 +17,6 @@ public class ConvidadoService {
     @Autowired
     private ConvidadoRepository convidadoRepository;
     
-    public String getNomeById(String id) {
-        Optional<Convidado> consulta = convidadoRepository.findById(UUID.fromString(id));
-        if (consulta.isPresent()){
-            Convidado convidado = consulta.get();
-            return convidado.getNome();
-        } 
-        return null;
-    }
-
     public ConvidadoDTO create(ConvidadoDTO convidado) {
         List<Convidado> consulta = convidadoRepository.findByNome(convidado.getNome());
         if (!consulta.isEmpty()){
@@ -36,5 +27,9 @@ public class ConvidadoService {
         entity = convidadoRepository.save(entity);
         convidado.setId(entity.getId());
         return convidado;
+    }
+
+    public List<Convidado> list() {
+        return convidadoRepository.findAll();
     }
 }
