@@ -17,12 +17,13 @@ public class ConvidadoService {
     @Autowired
     private ConvidadoRepository convidadoRepository;
     
-    public ConvidadoDTO create(ConvidadoDTO convidado) {
+    public ConvidadoDTO createOrUpdate(ConvidadoDTO convidado) {
         List<Convidado> consulta = convidadoRepository.findByNome(convidado.getNome());
         if (!consulta.isEmpty()){
             return null;
         }
         Convidado entity = new Convidado();
+        entity.setId(convidado.getId());
         entity.setNome(convidado.getNome());
         entity = convidadoRepository.save(entity);
         convidado.setId(entity.getId());

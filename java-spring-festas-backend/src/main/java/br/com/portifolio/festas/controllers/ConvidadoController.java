@@ -22,7 +22,6 @@ public class ConvidadoController {
     @Autowired
     private ConvidadoService convidadoService;
 
-
     @GetMapping
     public ResponseEntity<List<Convidado>> listConvidados() {
         return new ResponseEntity<List<Convidado>>(convidadoService.list(), HttpStatus.OK);
@@ -30,7 +29,7 @@ public class ConvidadoController {
 
     @PostMapping
     public ResponseEntity<ConvidadoDTO> create(@RequestBody ConvidadoDTO convidado){
-        return new ResponseEntity<ConvidadoDTO>(convidadoService.create(convidado), HttpStatus.OK);
+        return new ResponseEntity<ConvidadoDTO>(convidadoService.createOrUpdate(convidado), HttpStatus.OK);
     }
 
 }
